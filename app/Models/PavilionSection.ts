@@ -1,13 +1,25 @@
-import {DateTime} from 'luxon'
-import {BaseModel, column} from '@ioc:Adonis/Lucid/Orm'
+import {BaseModel, column, HasOne, hasOne} from '@ioc:Adonis/Lucid/Orm'
+import Chess from "App/Models/Chess";
 
 export default class PavilionSection extends BaseModel {
   @column({isPrimary: true})
   public id: number
 
-  @column.dateTime({autoCreate: true})
-  public createdAt: DateTime
+  @column()
+  public pavilion_id: number
 
-  @column.dateTime({autoCreate: true, autoUpdate: true})
-  public updatedAt: DateTime
+  @column()
+  public name: string
+
+  @column()
+  public floor_amount: number
+
+  @column()
+  public riser_amount: number
+
+  @column()
+  public view_action: boolean
+
+  @hasOne(() => Chess, {foreignKey: 'id'})
+  public chess: HasOne<typeof Chess>
 }

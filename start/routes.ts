@@ -33,6 +33,13 @@ Route.get('/test', async () => {
     .preload('realtyPayment')
     .preload('builders')
     .preload('contacts')
+    .preload('realtyPavilions', pavilion=>
+      pavilion.preload('sections', section=>
+        section.preload('chess', chess=>
+          chess.preload('cols').preload('rows').preload('cells')
+        )
+      )
+    )
     .firstOrFail()
 })
 

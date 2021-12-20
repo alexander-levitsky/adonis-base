@@ -13,9 +13,19 @@
 import 'reflect-metadata'
 import sourceMapSupport from 'source-map-support'
 import {Ignitor} from '@adonisjs/core/build/standalone'
+import cluster from 'cluster';
 
-sourceMapSupport.install({handleUncaughtExceptions: false})
+sourceMapSupport.install({handleUncaughtExceptions: false});
 
-new Ignitor(__dirname)
-  .httpServer()
-  .start()
+
+if (cluster.isPrimary) {
+  for (let i = 0; i < Number(process.env.NUMBER_OF_PROCESSORS); i++) {
+    cluster.fork();
+  }
+
+  cluster.on('exit', (worker) => {
+    console.log(`worker ${worker.process.pid} died`);
+  });
+} else {
+  new Ignitor(__dirname).httpServer().start()
+}

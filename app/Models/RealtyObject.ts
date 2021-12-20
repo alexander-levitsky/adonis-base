@@ -2,7 +2,7 @@ import {ModerateStatuses} from 'App/Contracts/Enums'
 
 import {
   BaseModel,
-  column,
+  column, HasMany, hasMany,
   hasManyThrough,
   HasManyThrough,
   HasOne,
@@ -16,6 +16,7 @@ import Builder from "App/Models/Dictionaries/Builder";
 import BuildersToObject from "App/Models/ThrowModels/BuildersToObject";
 import Contact from "App/Models/Contact";
 import ContactsToObject from "App/Models/ThrowModels/ContactsToObject";
+import RealtyPavilion from "App/Models/RealtyPavilion";
 
 export default class RealtyObject extends BaseModel {
 
@@ -197,10 +198,6 @@ export default class RealtyObject extends BaseModel {
   public contacts: HasManyThrough<typeof Contact>
 
 
-  // public function contacts()
-  // {
-  //   return $this->belongsToMany(Contact::class, 'contacts_to_object', 'object_id', 'contact_id');
-  // }
-
-
+  @hasMany(() => RealtyPavilion, {foreignKey: 'object_id'})
+  public realtyPavilions: HasMany<typeof RealtyPavilion>
 }

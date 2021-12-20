@@ -1,13 +1,21 @@
-import {DateTime} from 'luxon'
 import {BaseModel, column} from '@ioc:Adonis/Lucid/Orm'
 
 export default class ChessCol extends BaseModel {
   @column({isPrimary: true})
   public id: number
 
-  @column.dateTime({autoCreate: true})
-  public createdAt: DateTime
+  @column()
+  public chess_id: number
 
-  @column.dateTime({autoCreate: true, autoUpdate: true})
-  public updatedAt: DateTime
+  @column()
+  public col: number
+
+  @column()
+  public name: string
+
+  @column()
+  public colspan: number
+
+  @column()
+  public rowspan: number
 }
