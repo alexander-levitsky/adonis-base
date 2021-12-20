@@ -3,7 +3,7 @@ import BaseSchema from '@ioc:Adonis/Lucid/Schema'
 export default class PavilionSections extends BaseSchema {
   protected tableName = 'pavilion_sections'
 
-  public async up () {
+  public async up() {
     this.schema.createTable(this.tableName, (table) => {
       table.increments('id');
       table.integer('pavilion_id').unsigned().index();
@@ -16,7 +16,7 @@ export default class PavilionSections extends BaseSchema {
     })
   }
 
-  public async down () {
+  public async down() {
     this.schema.dropTable(this.tableName)
   }
 }

@@ -1,13 +1,22 @@
-import { DateTime } from 'luxon'
-import { BaseModel, column } from '@ioc:Adonis/Lucid/Orm'
+import {BaseModel, column} from '@ioc:Adonis/Lucid/Orm'
 
 export default class RealtyPayment extends BaseModel {
-  @column({ isPrimary: true })
+  @column({isPrimary: true})
   public id: number
 
-  @column.dateTime({ autoCreate: true })
-  public createdAt: DateTime
+  @column()
+  public object_id: number
 
-  @column.dateTime({ autoCreate: true, autoUpdate: true })
-  public updatedAt: DateTime
+  @column()
+  public military_ipoteka: boolean
+
+  @column()
+  public mat_capital: boolean
+
+  @column()
+  public ipoteka: boolean
+
+  @column()
+  public installments: boolean
+
 }

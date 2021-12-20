@@ -3,7 +3,7 @@ import BaseSchema from '@ioc:Adonis/Lucid/Schema'
 export default class OfferPayments extends BaseSchema {
   protected tableName = 'offer_payments'
 
-  public async up () {
+  public async up() {
     this.schema.createTable(this.tableName, (table) => {
       table.increments('offer_id').unique();
       table.boolean('cash').defaultTo(0);
@@ -15,7 +15,7 @@ export default class OfferPayments extends BaseSchema {
     })
   }
 
-  public async down () {
+  public async down() {
     this.schema.dropTable(this.tableName)
   }
 }

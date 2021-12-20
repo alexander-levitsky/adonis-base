@@ -3,7 +3,7 @@ import BaseSchema from '@ioc:Adonis/Lucid/Schema'
 export default class RealtyAdditionals extends BaseSchema {
   protected tableName = 'realty_additionals'
 
-  public async up () {
+  public async up() {
     this.schema.createTable(this.tableName, (table) => {
 
       table.integer('object_id').unsigned().unique();
@@ -36,7 +36,7 @@ export default class RealtyAdditionals extends BaseSchema {
     })
   }
 
-  public async down () {
+  public async down() {
     this.schema.dropTable(this.tableName)
   }
 }

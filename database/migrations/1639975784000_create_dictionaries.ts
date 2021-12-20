@@ -17,8 +17,8 @@ export default class CreateDictionaries extends BaseSchema {
     'realty_gas',
   ]
 
-  public async up () {
-    this.tables.forEach(tableName=>{
+  public async up() {
+    this.tables.forEach(tableName => {
       this.schema.createTable(tableName, (table) => {
         table.increments('id')
         table.string('name', 128)
@@ -26,7 +26,7 @@ export default class CreateDictionaries extends BaseSchema {
     })
   }
 
-  public async down () {
+  public async down() {
     this.tables.forEach(this.schema.dropTable)
   }
 }

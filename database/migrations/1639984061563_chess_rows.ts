@@ -3,11 +3,11 @@ import BaseSchema from '@ioc:Adonis/Lucid/Schema'
 export default class ChessRows extends BaseSchema {
   protected tableName = 'chess_rows'
 
-  public async up () {
+  public async up() {
     this.schema.createTable(this.tableName, (table) => {
       table.increments('id')
       table.integer('chess_id').unsigned().index();
-      table.string('name',64).nullable();
+      table.string('name', 64).nullable();
       table.integer('colspan').unsigned().nullable();
       table.integer('rowspan').unsigned().nullable();
 
@@ -16,7 +16,7 @@ export default class ChessRows extends BaseSchema {
     })
   }
 
-  public async down () {
+  public async down() {
     this.schema.dropTable(this.tableName)
   }
 }

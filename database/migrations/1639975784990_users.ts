@@ -3,7 +3,7 @@ import BaseSchema from '@ioc:Adonis/Lucid/Schema'
 export default class Users extends BaseSchema {
   protected tableName = 'users'
 
-  public async up () {
+  public async up() {
     this.schema.createTable(this.tableName, (table) => {
 
       table.bigIncrements('id');
@@ -21,13 +21,13 @@ export default class Users extends BaseSchema {
       table.string('ads_firstname').nullable().defaultTo(null)
       table.string('ads_lastname').nullable().defaultTo(null)
       table.string('agency').index().nullable().defaultTo(null)
-      table.enum('status',['not accepted','not verified','active','disabled']).defaultTo('not accepted').index();
+      table.enum('status', ['not accepted', 'not verified', 'active', 'disabled']).defaultTo('not accepted').index();
       table.string('token', 80).unique().nullable().defaultTo(null);
 
     })
   }
 
-  public async down () {
+  public async down() {
     this.schema.dropTable(this.tableName)
   }
 }

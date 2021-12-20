@@ -19,23 +19,22 @@
 */
 
 import Route from '@ioc:Adonis/Core/Route'
-import User from "App/Models/User";
+import RealtyObject from "App/Models/RealtyObject";
 
 Route.get('/', async () => {
-  return { hello: 'world' }
+  return {hello: 'world'}
 })
 
 
 Route.get('/test', async () => {
-
-  let user = new User();
-  user.email = Date.now().toString();
-  await user.save();
-
-  return user
+  return RealtyObject.query().where('id', 54)
+    .preload('realtyAdditional')
+    .preload('realtyParking')
+    .preload('realtyPayment')
+    .firstOrFail()
 })
 
 
 Route.get('/*', async () => {
-  return { error: 'not found', code:404 }
+  return {error: 'not found', code: 404}
 })

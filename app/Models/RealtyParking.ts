@@ -1,13 +1,22 @@
-import { DateTime } from 'luxon'
-import { BaseModel, column } from '@ioc:Adonis/Lucid/Orm'
+import {BaseModel, column} from '@ioc:Adonis/Lucid/Orm'
 
 export default class RealtyParking extends BaseModel {
-  @column({ isPrimary: true })
+  @column({isPrimary: true})
   public id: number
 
-  @column.dateTime({ autoCreate: true })
-  public createdAt: DateTime
+  @column()
+  public object_id: number
 
-  @column.dateTime({ autoCreate: true, autoUpdate: true })
-  public updatedAt: DateTime
+  @column()
+  public parking_underground: boolean
+
+  @column()
+  public parking_multilevel: boolean
+
+  @column()
+  public parking_type_roofed: boolean
+
+  @column()
+  public house_parking: boolean
+
 }

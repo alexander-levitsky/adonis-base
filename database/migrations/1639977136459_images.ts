@@ -4,7 +4,7 @@ import Database from '@ioc:Adonis/Lucid/Database'
 export default class Images extends BaseSchema {
   protected tableName = 'images'
 
-  public async up () {
+  public async up() {
     this.schema.createTable(this.tableName, (table) => {
       table.increments('id');
       Database.rawQuery(`ALTER TABLE ${this.tableName} AUTO_INCREMENT = 500000`).exec()
@@ -16,7 +16,7 @@ export default class Images extends BaseSchema {
     })
   }
 
-  public async down () {
+  public async down() {
     this.schema.dropTable(this.tableName)
   }
 }
