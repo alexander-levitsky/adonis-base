@@ -22,10 +22,6 @@ if (cluster.isPrimary) {
   for (let i = 0; i < Number(process.env.NUMBER_OF_PROCESSORS); i++) {
     cluster.fork();
   }
-
-  cluster.on('exit', (worker) => {
-    console.log(`worker ${worker.process.pid} died`);
-  });
 } else {
   new Ignitor(__dirname).httpServer().start()
 }
