@@ -1,13 +1,25 @@
-import {DateTime} from 'luxon'
 import {BaseModel, column} from '@ioc:Adonis/Lucid/Orm'
 
 export default class Contact extends BaseModel {
-  @column({isPrimary: true})
+  @column({isPrimary: true, serializeAs: null})
   public id: number
 
-  @column.dateTime({autoCreate: true})
-  public createdAt: DateTime
+  @column()
+  public name: string
 
-  @column.dateTime({autoCreate: true, autoUpdate: true})
-  public updatedAt: DateTime
+  @column()
+  public position: string
+
+  @column()
+  public phone: string
+
+  @column()
+  public email: string
+
+  @column()
+  public phone2: string
+
+  @column()
+  public email2: string
+
 }

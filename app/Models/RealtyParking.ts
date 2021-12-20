@@ -1,10 +1,7 @@
 import {BaseModel, column} from '@ioc:Adonis/Lucid/Orm'
 
 export default class RealtyParking extends BaseModel {
-  @column({isPrimary: true})
-  public id: number
-
-  @column()
+  @column({isPrimary: true, serializeAs: null})
   public object_id: number
 
   @column()

@@ -1,12 +1,21 @@
 import {ModerateStatuses} from 'App/Contracts/Enums'
 
-import {BaseModel, column, HasOne, hasOne} from '@ioc:Adonis/Lucid/Orm'
+import {
+  BaseModel,
+  column,
+  hasManyThrough,
+  HasManyThrough,
+  HasOne,
+  hasOne,
+} from '@ioc:Adonis/Lucid/Orm'
 
 import RealtyAdditional from "App/Models/RealtyAdditional";
 import RealtyParking from "App/Models/RealtyParking";
 import RealtyPayment from "App/Models/RealtyPayment";
-
-//import Builder from "App/Models/Dictionaries/Builder";
+import Builder from "App/Models/Dictionaries/Builder";
+import BuildersToObject from "App/Models/ThrowModels/BuildersToObject";
+import Contact from "App/Models/Contact";
+import ContactsToObject from "App/Models/ThrowModels/ContactsToObject";
 
 export default class RealtyObject extends BaseModel {
 
@@ -173,11 +182,25 @@ export default class RealtyObject extends BaseModel {
   @hasOne(() => RealtyPayment, {foreignKey: 'object_id'})
   public realtyPayment: HasOne<typeof RealtyPayment>
 
-  // @hasManyThrough([() => Builder, () => RealtyPayment], 'object_id')
-  // public builders: HasOne<typeof RealtyPayment>
+  @hasManyThrough([() => Builder, () => BuildersToObject], {
+    foreignKey:'object_id',       // builder_to_objects.object_id
+    throughLocalKey:'builder_id', // builder_to_objects.builder_id
+    throughForeignKey:'id',       // builders.id
+  })
+  public builders: HasManyThrough<typeof Builder>
+
+  @hasManyThrough([() => Contact, () => ContactsToObject], {
+    foreignKey:'object_id',
+    throughLocalKey:'contact_id',
+    throughForeignKey:'id',
+  })
+  public contacts: HasManyThrough<typeof Contact>
 
 
-  // return $this->belongsToMany(Builder::class, 'builders_to_object', 'object_id', 'builder_id');
+  // public function contacts()
+  // {
+  //   return $this->belongsToMany(Contact::class, 'contacts_to_object', 'object_id', 'contact_id');
+  // }
 
 
 }

@@ -27,10 +27,12 @@ Route.get('/', async () => {
 
 
 Route.get('/test', async () => {
-  return RealtyObject.query().where('id', 54)
+  return RealtyObject.query().where('id', 47)
     .preload('realtyAdditional')
     .preload('realtyParking')
     .preload('realtyPayment')
+    .preload('builders')
+    .preload('contacts')
     .firstOrFail()
 })
 
